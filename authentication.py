@@ -1,4 +1,4 @@
-from login_exceptions import UsernameAlreadyExists, PasswordTooWeak, InvalidUsername, InvalidPassword
+from login_exceptions import UsernameAlreadyExists, PasswordTooWeak, InvalidUsername, InvalidPassword, UserNotLoggedIn
 import hashlib
 import json
 
@@ -33,7 +33,6 @@ class Authenticator:
                 user = User(username)
                 user._set_encrypted_password(cached_data[username])
                 cached_users[username] = user
-            print(cached_users)
             self.users = cached_users
         else:
             self.users = dict()
@@ -67,6 +66,17 @@ class Authenticator:
 
         user.is_logged_in = True
         return True
+
+    def logout(self, username):
+        try:
+            user = self.users[username]
+        except KeyError:
+            raise InvalidUsername(username)
+
+        if user.is_logged_in is True:
+            user.is_logged_in = False
+        else:
+            raise UserNotLoggedIn(username)
 
     def is_logged_in(self, username):
         if username in self.users:

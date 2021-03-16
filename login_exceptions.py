@@ -18,3 +18,7 @@ class InvalidUsername(LoginException):
 
 class InvalidPassword(LoginException):
     pass
+
+
+class UserNotLoggedIn(LoginException):
+    pass

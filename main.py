@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from main_ui import Ui_MainWindow
 from authentication import Authenticator
-from login_exceptions import UsernameAlreadyExists, PasswordTooWeak, InvalidUsername, InvalidPassword
+from login_exceptions import UsernameAlreadyExists, PasswordTooWeak, InvalidUsername, InvalidPassword, UserNotLoggedIn
 import sys
 
 
@@ -18,6 +18,7 @@ class LoginSystem(QtWidgets.QMainWindow):
 
     def connect_signals_and_slots(self):
         self.ui.pushButton_sign_in.clicked.connect(self.sign_in)
+        self.ui.pushButton_sign_out.clicked.connect(self.sign_out)
         self.ui.pushButton_agree_and_join.clicked.connect(self.agree_and_join)
         self.ui.pushButton_show_hide.clicked.connect(self.show_hide)
 
@@ -42,6 +43,23 @@ class LoginSystem(QtWidgets.QMainWindow):
             finally:
                 popup_window.exec()
 
+    def sign_out(self):
+        popup_window = QtWidgets.QMessageBox()
+        popup_window.setWindowTitle("Message")
+        try:
+            self.authenticator.logout(self.ui.lineEdit_login_email.text())
+            popup_window.setIcon(QtWidgets.QMessageBox.Information)
+            popup_window.setText("User logged out")
+            popup_window.exec()
+        except InvalidUsername:
+            popup_window.setIcon(QtWidgets.QMessageBox.Critical)
+            popup_window.setText("Invalid username")
+            popup_window.exec()
+        except UserNotLoggedIn:
+            popup_window.setIcon(QtWidgets.QMessageBox.Critical)
+            popup_window.setText("User not logged in")
+            popup_window.exec()
+
     def agree_and_join(self):
         popup_window = QtWidgets.QMessageBox()
         popup_window.setWindowTitle("Message")
@@ -53,9 +71,9 @@ class LoginSystem(QtWidgets.QMainWindow):
 
         try:
             self.authenticator.add_user(self.ui.lineEdit_new_email.text(), self.ui.lineEdit_new_password.text())
-        except UsernameAlreadyExists:
+        except UsernameAlreadyExists as ex:
             popup_window.setIcon(QtWidgets.QMessageBox.Critical)
-            popup_window.setText("Username already exists")
+            popup_window.setText("Username " + ex.username + " already exists")
         except PasswordTooWeak:
             popup_window.setIcon(QtWidgets.QMessageBox.Critical)
             popup_window.setText("Password is too weak")
