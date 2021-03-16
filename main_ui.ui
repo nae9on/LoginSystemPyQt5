@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>443</width>
-    <height>488</height>
+    <width>467</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="font">
@@ -23,16 +23,6 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label_linked_in_logo">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>C:/Users/ahkad/Desktop/LinkedIn.JPG</pixmap>
-        </property>
-       </widget>
-      </item>
       <item>
        <widget class="QLabel" name="label_sign_in">
         <property name="font">
@@ -67,6 +57,9 @@
          <widget class="QLineEdit" name="lineEdit_login_password">
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Password</string>
           </property>
          </widget>
         </item>
@@ -127,7 +120,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_new_email"/>
+       <widget class="QLineEdit" name="lineEdit_new_email">
+        <property name="placeholderText">
+         <string>Email or Phone</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_new_password">
