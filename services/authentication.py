@@ -1,4 +1,4 @@
-from login_exceptions import UsernameAlreadyExists, PasswordTooWeak, InvalidUsername, InvalidPassword, UserNotLoggedIn
+from exceptions.login_exceptions import UsernameAlreadyExists, PasswordTooWeak, InvalidUsername, InvalidPassword, UserNotLoggedIn
 import hashlib
 import json
 
@@ -23,7 +23,7 @@ class User:
 
 
 class Authenticator:
-    cached_users_list_file = 'users_list.json'
+    cached_users_list_file = './database/users_list.json'
 
     def __init__(self):
         cached_data = self._get_cached_users()
