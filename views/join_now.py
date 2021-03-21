@@ -18,7 +18,7 @@ class Ui_Form(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.frame = QtWidgets.QFrame(Form)
-        self.frame.setStyleSheet("")
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -58,7 +58,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Join now"))
         self.label_new_email.setText(_translate("Form", "Email"))
         self.lineEdit_new_email.setPlaceholderText(_translate("Form", "Email or Phone"))
         self.label_new_password.setText(_translate("Form", "Password (6 or more characters)"))
