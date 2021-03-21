@@ -1,13 +1,35 @@
 from contollers.main_controller import LoginSystem
+from contollers.join_now_controller import JoinNow
+from services.authentication import Authenticator
 from PyQt5 import QtWidgets
 import sys
 
 
+# Sub-classing QApplication to create an application object
+# Think of this as a circuit board of the application where all the components
+# will be mounted and loosely connected together
 class MainApp(QtWidgets.QApplication):
     def __init__(self, argv):
         super().__init__(argv)
-        self.widget = LoginSystem()
-        self.widget.show()
+
+        # Service component
+        self.authenticator = Authenticator()
+
+        # Main login component
+        self.login_system = LoginSystem(self.authenticator)
+
+        # Join now component
+        self.join_now = JoinNow(self.authenticator)
+        self.login_system.show()
+
+        # Loose coupling
+        # Connect the join_now_requested signal with the show() public slot
+        self.login_system.join_now_requested.connect(self.clear_join_now_screen)
+
+    def clear_join_now_screen(self):
+        self.join_now.ui.lineEdit_new_email.clear()
+        self.join_now.ui.lineEdit_new_password.clear()
+        self.join_now.show()
 
 
 if __name__ == "__main__":

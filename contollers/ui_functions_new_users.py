@@ -1,9 +1,9 @@
-from contollers.main_controller import LoginSystem
+from contollers.join_now_controller import JoinNow
 import exceptions.login_exceptions as login_ex
 from PyQt5 import QtWidgets
 
 
-class UIFunctions(LoginSystem):
+class UIFunctions(JoinNow):
     def agree_and_join(self):
         popup_window = QtWidgets.QMessageBox()
         popup_window.setWindowTitle("Message")
