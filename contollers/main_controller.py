@@ -19,5 +19,5 @@ class LoginSystem(QtWidgets.QMainWindow):
         from contollers import ui_functions_new_users as uif_new
         self.ui.pushButton_sign_in.clicked.connect(lambda: uif_existing.UIFunctions.sign_in(self))
         self.ui.pushButton_sign_out.clicked.connect(lambda: uif_existing.UIFunctions.sign_out(self))
-        self.ui.pushButton_agree_and_join.clicked.connect(lambda: uif_new.UIFunctions.agree_and_join(self))
         self.ui.pushButton_show_hide.clicked.connect(lambda: uif_existing.UIFunctions.show_hide(self))
+        self.ui.pushButton_agree_and_join.clicked.connect(lambda: uif_new.UIFunctions.agree_and_join(self))
