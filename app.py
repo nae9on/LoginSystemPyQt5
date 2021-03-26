@@ -25,6 +25,7 @@ class MainApp(QtWidgets.QApplication):
         # Loose coupling
         # Connect the join_now_requested signal with the show() public slot
         self.login_system.join_now_requested.connect(self.clear_join_now_screen)
+        self.login_system.close_join_now_screen.connect(self.join_now.close)
 
     def clear_join_now_screen(self):
         self.join_now.ui.lineEdit_new_email.clear()

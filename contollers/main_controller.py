@@ -10,6 +10,8 @@ class LoginSystem(QtWidgets.QMainWindow):
     # bool because clicked signal on a push button sends a boolean
     join_now_requested = QtCore.pyqtSignal(bool)
 
+    close_join_now_screen = QtCore.pyqtSignal()
+
     def __init__(self, authenticator, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -29,3 +31,8 @@ class LoginSystem(QtWidgets.QMainWindow):
 
         # Connect the clicked button signal to the join_now_requested signal
         self.ui.pushButton_JoinNow.clicked.connect(self.join_now_requested)
+
+    def closeEvent(self, event):
+        """Cleanup code after the main window is closed."""
+        self.close_join_now_screen.emit()
+        event.accept()  # event.ignore() try this for fun :)
