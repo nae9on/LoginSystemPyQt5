@@ -86,4 +86,4 @@ class Authenticator:
     def write_to_file(self):
         username_password_dict = {user: self.users[user].encrypted_password for user in self.users.keys()}
         with open(Authenticator.cached_users_list_file, 'w') as file:
-            json.dump(username_password_dict, file)
+            json.dump(username_password_dict, file, indent=4, sort_keys=True)
