@@ -17,10 +17,10 @@ class MainApp(QtWidgets.QApplication):
 
         # Main login component
         self.login_system = LoginSystem(self.authenticator)
+        self.login_system.show()
 
         # Join now component
         self.join_now = JoinNow(self.authenticator)
-        self.login_system.show()
 
         # Loose coupling
         # Connect the join_now_requested signal with the show() public slot
