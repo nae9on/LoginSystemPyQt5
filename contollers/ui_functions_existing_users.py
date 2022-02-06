@@ -1,10 +1,15 @@
 from contollers.main_controller import LoginSystem
 import exceptions.login_exceptions as login_ex
+
 from PyQt5 import QtWidgets
 
 
 class UIFunctions(LoginSystem):
-    def sign_in(self):
+    """
+    Function callbacks on the main login system window.
+    """
+
+    def sign_in(self) -> None:
         popup_window = QtWidgets.QMessageBox()
         popup_window.setWindowTitle("Message")
         if self.authenticator.is_logged_in(self.ui.lineEdit_login_email.text()):
@@ -25,24 +30,23 @@ class UIFunctions(LoginSystem):
             finally:
                 popup_window.exec()
 
-    def sign_out(self):
+    def sign_out(self) -> None:
         popup_window = QtWidgets.QMessageBox()
         popup_window.setWindowTitle("Message")
         try:
             self.authenticator.logout(self.ui.lineEdit_login_email.text())
             popup_window.setIcon(QtWidgets.QMessageBox.Information)
             popup_window.setText("User logged out")
-            popup_window.exec()
         except login_ex.InvalidUsername:
             popup_window.setIcon(QtWidgets.QMessageBox.Critical)
             popup_window.setText("Invalid username")
-            popup_window.exec()
         except login_ex.UserNotLoggedIn:
             popup_window.setIcon(QtWidgets.QMessageBox.Critical)
             popup_window.setText("User not logged in")
+        finally:
             popup_window.exec()
 
-    def show_hide(self):
+    def show_hide(self) -> None:
         if self.ui.lineEdit_login_password.echoMode() == QtWidgets.QLineEdit.Normal:
             self.ui.lineEdit_login_password.setEchoMode(QtWidgets.QLineEdit.Password)
             self.ui.pushButton_show_hide.setText("show")

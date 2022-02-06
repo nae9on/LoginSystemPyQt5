@@ -1,11 +1,17 @@
+from services.authentication import Authenticator
 from views.join_now import Ui_Form
+
 from PyQt5 import QtWidgets
 
 
-# The join now component was created as a QWidget in QT Designer
+# The join now component was created as a QWidget in Qt Designer
 # Therefore, it should extend a QWidget
 class JoinNow(QtWidgets.QWidget):
-    def __init__(self, authenticator, *args, **kwargs):
+    """
+    Controls the actions that will follow when a user clicks join now button.
+    """
+
+    def __init__(self, authenticator: Authenticator, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.authenticator = authenticator

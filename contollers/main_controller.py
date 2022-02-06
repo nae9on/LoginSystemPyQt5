@@ -1,10 +1,15 @@
+from services.authentication import Authenticator
+
 from views.main_window import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 
 
-# The main component was created as a QMainWindow in QT Designer
+# The main component was created as a QMainWindow in Qt Designer
 # Therefore, it should extend a QMainWindow
 class LoginSystem(QtWidgets.QMainWindow):
+    """
+    Controls the actions that will follow when a user clicks any button on the main login system window.
+    """
 
     # Create a new external signal to request join now component widget
     # bool because clicked signal on a push button sends a boolean
@@ -12,7 +17,7 @@ class LoginSystem(QtWidgets.QMainWindow):
 
     close_join_now_screen = QtCore.pyqtSignal()
 
-    def __init__(self, authenticator, *args, **kwargs):
+    def __init__(self, authenticator: Authenticator, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         self.authenticator = authenticator
@@ -22,7 +27,7 @@ class LoginSystem(QtWidgets.QMainWindow):
 
         self._connect_signals_and_slots()
 
-    def _connect_signals_and_slots(self):
+    def _connect_signals_and_slots(self) -> None:
         # Import here instead of top of this module to avoid ImportError due to circular (or cyclic) imports
         from contollers import ui_functions_existing_users as uif_existing
         self.ui.pushButton_sign_in.clicked.connect(lambda: uif_existing.UIFunctions.sign_in(self))

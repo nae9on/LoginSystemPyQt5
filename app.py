@@ -1,14 +1,18 @@
 from contollers.main_controller import LoginSystem
 from contollers.join_now_controller import JoinNow
 from services.authentication import Authenticator
+
 from PyQt5 import QtWidgets
+
 import sys
 
 
-# Sub-classing QApplication to create an application object
-# Think of this as a circuit board of the application where all the components
-# will be mounted and loosely connected together
 class MainApp(QtWidgets.QApplication):
+    """
+    Sub-classing QApplication to create an application object. Think of this as a circuit board of the application
+    where all the components will be mounted and loosely connected together.
+    """
+
     def __init__(self, argv):
         super().__init__(argv)
 
